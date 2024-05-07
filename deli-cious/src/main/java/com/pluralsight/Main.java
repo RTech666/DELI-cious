@@ -394,15 +394,19 @@ public class Main {
         System.out.print("Enter your choice: ");
         int sizeChoice = scanner.nextInt();
         String size;
+        double price;
         switch (sizeChoice) {
             case 1:
                 size = "Small";
+                price = 2;
                 break;
             case 2:
                 size = "Medium";
+                price = 2.5;
                 break;
             case 3:
                 size = "Large";
+                price = 3;
                 break;
             default:
                 System.out.println("Invalid size choice. Drink not added.");
@@ -428,14 +432,14 @@ public class Main {
                 drinkType = "Iced Tea";
                 break;
             default:
-                System.out.println("Invalid drink choice. Drink not added.");
+                System.out.println("Invalid input.");
                 return;
         }
     
-        // Add the selected drink to the order
-        Drink drink = new Drink(size, drinkType);
+        // Add the selected drink to the order with the calculated price
+        Drink drink = new Drink(size, drinkType, price);
         order.addDrink(drink);
-        System.out.println("Drink added to the order: " + size + " " + drinkType);
+        System.out.println("Drink added to the order.");
     }
 
     public static void addChips(Scanner scanner, Order order) {
@@ -448,26 +452,31 @@ public class Main {
         System.out.print("Enter your choice: ");
         int chipChoice = scanner.nextInt();
         String chipType;
+        double chipPrice;
         switch (chipChoice) {
             case 1:
                 chipType = "Regular";
+                chipPrice = 1.5;
                 break;
             case 2:
                 chipType = "BBQ";
+                chipPrice = 1.5;
                 break;
             case 3:
                 chipType = "Sour Cream & Onion";
+                chipPrice = 1.5;
                 break;
             case 4:
                 chipType = "Salt & Vinegar";
+                chipPrice = 1.5;
                 break;
             default:
-                System.out.println("Invalid chip choice. Chips not added.");
+                System.out.println("Invalid input.");
                 return;
         }
     
-        // Add the selected chips to the order
-        Chips chips = new Chips(chipType);
+        // Add the selected chips to the order with the calculated price
+        Chips chips = new Chips(chipType, chipPrice);
         order.addChips(chips);
         System.out.println("Chips added to the order: " + chipType);
     }
