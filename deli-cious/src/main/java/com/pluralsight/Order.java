@@ -1,0 +1,39 @@
+package com.pluralsight;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+class Order {
+    // Create variables, as private.
+    private List<Sandwich> sandwiches;
+    private List<Drink> drinks;
+    private List<Chips> chips;
+    private List<Side> sides;
+    private Date orderTime;
+
+    // Create the constructor.
+    public Order() {
+        this.sandwiches = new ArrayList<>();
+        this.drinks = new ArrayList<>();
+        this.chips = new ArrayList<>();
+        this.orderTime = new Date();
+        this.sides = new ArrayList<>();
+    }
+
+    // Create setters.
+    public void addSandwich(Sandwich sandwich) {
+        sandwiches.add(sandwich);
+    }
+
+    public void addDrink(Drink drink) {
+        drinks.add(drink);
+    }
+
+    public void addChips(Chips chips) {
+        this.chips.add(chips);
+    }
+
+    public void addSide(Side side) {
+        sides.add(side);
+    }
+}
