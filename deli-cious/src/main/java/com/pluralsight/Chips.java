@@ -1,3 +1,8 @@
+/* 
+Chips.java
+This Java file contains the base for the chips.
+*/
+
 package com.pluralsight;
 
 class Chips {

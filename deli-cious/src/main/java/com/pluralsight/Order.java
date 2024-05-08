@@ -1,3 +1,8 @@
+/* 
+Order.java
+This Java file contains the base for orders.
+*/
+
 package com.pluralsight;
 import java.util.ArrayList;
 import java.util.List;

@@ -1,3 +1,8 @@
+/* 
+Drink.java
+This Java file contains the base for the drinks.
+*/
+
 package com.pluralsight;
 
 class Drink {

@@ -1,3 +1,20 @@
+/* 
+Main.java
+This Java file contains the main program.
+
+handleNewOrder() - Prints the main menu for the user to choose what they want to order.
+addSandwich() - If user wants to order a sandwich, prints all the options for ordering a sandwich.
+signatureSandwich() - If user wants to order a signature sandwich, allows them to customize the sandwich as well.
+meatChoice() - Alows user to choose what meat they want on their sandwich.
+cheeseChoice() - Same as the previous method, but for cheese.
+toppingChoice() - Same as the previous method, but for toppings.
+sauceChoice() - Same as previous method, but for sauce.
+sideChoice() - Same as previous method, but for sides.
+addDrink() - Allows user to add a drink, they choose the size and what type of drink they want.
+addChips() - Allows user to add chips, they choose what flavor of chips they want.
+checkout() - ALlows the user to checkout whatever they wanted to order, if user confirms the checkout, it saves it to a txt file.
+*/
+
 package com.pluralsight;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -63,9 +80,10 @@ public class Main {
             // Print order screen.
             System.out.println("\nOrder Screen:");
             System.out.println("1) Add Sandwich");
-            System.out.println("2) Add Drink");
-            System.out.println("3) Add Chips");
-            System.out.println("4) Checkout");
+            System.out.println("2) Signature Sandwiches");
+            System.out.println("3) Add Drink");
+            System.out.println("4) Add Chips");
+            System.out.println("5) Checkout");
             System.out.println("0) Cancel Order");
 
             // Ask user for their choice.
@@ -79,24 +97,26 @@ public class Main {
                         addSandwich(scanner, order);
                         break;
                     case 2:
+                        signatureSandwich();
+                    case 3:
                         addDrink(scanner, order);
                         break;
-                    case 3:
+                    case 4:
                         addChips(scanner, order);
                         break;
-                    case 4:
+                    case 5:
                         checkout();
                         break;
                     case 0:
                         System.out.println("Order canceled.");
                         break;
                     default:
-                        System.out.println("Invalid input. Please enter a number between 0 and 4.");
+                        System.out.println("Invalid input.");
                         validChoice = false;
                 }
             // If user enters invalid input, print error.
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter a number.");
+                System.out.println("Invalid input.");
                 scanner.next();
                 validChoice = false;
             }
@@ -207,6 +227,156 @@ public class Main {
 
         // Print success message.
         System.out.println("Sandwich added to the order.");
+    }
+
+    // Create signatureSandwich method.
+    public static void signatureSandwich() {
+        // Print signature sandwiches menu.
+        System.out.println("\nSignature Sandwiches:");
+        System.out.println("1) BLT");
+        System.out.println("2) Philly Cheese Steak");
+        
+        // Ask user for their choice.
+        System.out.print("Enter your choice: ");
+        int signatureChoice = scanner.nextInt();
+        scanner.nextLine();
+    
+        Sandwich signatureSandwich = null;
+        String signatureName = null;
+    
+        // Create the sandwich.
+        switch (signatureChoice) {
+            case 1:
+                signatureSandwich = new BLT();
+                signatureName = "BLT";
+                break;
+            case 2:
+                signatureSandwich = new Philly();
+                signatureName = "Philly Cheese Steak";
+                break;
+            default:
+                System.out.println("Invalid choice.");
+                return;
+        }
+    
+        // Ask if the user wants to customize.
+        System.out.print("Would you like to customize your " + signatureName + " sandwich? (Yes/No): ");
+        String customizeChoice = scanner.nextLine().toLowerCase();
+        
+        // If user said yes.
+        if (customizeChoice.equals("yes")) {
+            boolean doneCustomizing = false;
+            while (!doneCustomizing) {
+                // Print customization options menu.
+                System.out.println("\nCustomization Options:");
+                System.out.println("1) Remove Toppings");
+                System.out.println("2) Add Toppings");
+                System.out.println("0) Done Customizing");
+                
+                // Ask user for their choice.
+                System.out.print("Enter your choice: ");
+                int customizationChoice = scanner.nextInt();
+                scanner.nextLine();
+    
+                switch (customizationChoice) {
+                    case 1:
+                        // Print current toppings.
+                        System.out.println("\nCurrent Toppings:");
+                        int index = 1;
+                        for (Topping topping : signatureSandwich.getToppings()) {
+                            System.out.println(index + ") " + topping.getName());
+                            index++;
+                        }
+
+                        // Ask which toppings to remove.
+                        System.out.print("Enter the toppings to remove (separated by a comma): ");
+                        String toppingsToRemoveInput = scanner.nextLine();
+
+                        // Split the input by commas.
+                        String[] toppingIndexes = toppingsToRemoveInput.split(",");
+
+                        // Remove the selected toppings.
+                        for (String indexStr : toppingIndexes) {
+                            int toppingIndex = Integer.parseInt(indexStr.trim());
+                            if (toppingIndex >= 1 && toppingIndex <= signatureSandwich.getToppings().size()) {
+                                signatureSandwich.removeTopping(signatureSandwich.getToppings().get(toppingIndex - 1).getName());
+                            } else {
+                                System.out.println("Invalid topping index: " + toppingIndex);
+                            }
+                        }
+                        break;
+                    case 2:
+                        // Print available toppings
+                        System.out.println("\nAvailable Toppings:");
+                        System.out.println("1) Lettuce");
+                        System.out.println("2) Peppers");
+                        System.out.println("3) Onions");
+                        System.out.println("4) Tomatoes");
+                        System.out.println("5) Jalepenos");
+                        System.out.println("6) Cucumbers");
+                        System.out.println("7) Pickles");
+                        System.out.println("8) Guacamole");
+                        System.out.println("9) Mushrooms");
+                        
+                        // Ask user which topping they want to add.
+                        System.out.print("Enter the toppings to add (separated by a comma): ");
+                        String toppingsToAdd = scanner.nextLine();
+                        
+                        // Add toppings.
+                        String[] toppingNumbers = toppingsToAdd.split(",");
+                        for (String toppingNumber : toppingNumbers) {
+                            int toppingIndex = Integer.parseInt(toppingNumber.trim());
+
+                            // Read the user input and execute the appropriate method.
+                            switch (toppingIndex) {
+                                case 1:
+                                    signatureSandwich.addTopping(new Topping("Lettuce"));
+                                    break;
+                                case 2:
+                                    signatureSandwich.addTopping(new Topping("Peppers"));
+                                    break;
+                                case 3:
+                                    signatureSandwich.addTopping(new Topping("Onions"));
+                                    break;
+                                case 4:
+                                    signatureSandwich.addTopping(new Topping("Tomatoes"));
+                                    break;
+                                case 5:
+                                    signatureSandwich.addTopping(new Topping("Jalepenos"));
+                                    break;
+                                case 6:
+                                    signatureSandwich.addTopping(new Topping("Cucumbers"));
+                                    break;
+                                case 7:
+                                    signatureSandwich.addTopping(new Topping("Pickles"));
+                                    break;
+                                case 8:
+                                    signatureSandwich.addTopping(new Topping("Guacamole"));
+                                    break;
+                                case 9:
+                                    signatureSandwich.addTopping(new Topping("Mushrooms"));
+                                    break;
+                                default:
+                                    System.out.println("Invalid topping choice.");
+                            }
+                        }
+                        break;
+                    case 0:
+                        doneCustomizing = true;
+                        break;
+                    default:
+                        System.out.println("Invalid choice.");
+                }
+            }
+        }
+    
+        // Add the sandwich.
+        if (signatureSandwich != null) {
+            order.addSandwich(signatureSandwich);
+            System.out.println("Customized " + signatureName + " sandwich added to the order.");
+        }
+
+        handleNewOrder(scanner, order);
     }
 
     // Create meatChoice method.
@@ -653,6 +823,8 @@ public class Main {
 
         // Print success message.
         System.out.println("Chips added to the order.");
+
+        handleNewOrder(scanner, order);
     }
 
     // Create checkout method.
@@ -667,6 +839,10 @@ public class Main {
                 sandwichPrice = sandwich.getPrice() + extraMeatCost + extraCheeseCost + 7;
             } else if (size == 12) {
                 sandwichPrice = sandwich.getPrice() + extraMeatCost + extraCheeseCost + 8.5;
+            } else if (sandwich instanceof BLT) {
+                sandwichPrice = 7.00 + 2.00 + 1.50;
+            } else if (sandwich instanceof Philly) {
+                sandwichPrice = 7.00 + 2.00 + 1.50;
             }
             
             // Calculate total and print information.

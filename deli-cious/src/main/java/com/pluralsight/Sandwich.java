@@ -1,3 +1,8 @@
+/* 
+Sandwich.java
+This Java file contains the base for sandwiches.
+*/
+
 package com.pluralsight;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +20,7 @@ class Sandwich {
     private double extraMeatCost;
     private double extraCheeseCost;
 
-    // Create the constructor.
+    // Create the constructors.
     public Sandwich(String breadType, int size) {
         this.meats = new ArrayList<>();
         this.cheeses = new ArrayList<>();
@@ -58,6 +63,10 @@ class Sandwich {
 
     public int getSize() {
         return size;
+    }
+
+    public List<Topping> getToppings() {
+        return toppings;
     }
 
     public boolean hasExtraMeat() {
@@ -151,5 +160,16 @@ class Sandwich {
         }
 
         return totalPrice;
+    }
+
+    // Create removeTopping method.
+    public void removeTopping(String toppingName) {
+        for (int i = 0; i < toppings.size(); i++) {
+            Topping topping = toppings.get(i);
+            if (topping.getName().equalsIgnoreCase(toppingName)) {
+                toppings.remove(i);
+                return;
+            }
+        }
     }
 }

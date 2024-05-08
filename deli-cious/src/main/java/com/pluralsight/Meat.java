@@ -1,3 +1,8 @@
+/* 
+Meat.java
+This Java file contains the base for meats.
+*/
+
 package com.pluralsight;
 
 class Meat {

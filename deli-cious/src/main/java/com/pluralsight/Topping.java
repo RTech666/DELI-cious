@@ -1,3 +1,8 @@
+/* 
+Topping.java
+This Java file contains the base for the toppings.
+*/
+
 package com.pluralsight;
 
 class Topping {

@@ -1,3 +1,8 @@
+/* 
+Sauce.java
+This Java file contains the base for sauce.
+*/
+
 package com.pluralsight;
 
 class Sauce {

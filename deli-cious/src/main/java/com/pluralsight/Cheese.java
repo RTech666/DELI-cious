@@ -1,3 +1,8 @@
+/* 
+Cheese.java
+This Java file contains the base for cheese.
+*/
+
 package com.pluralsight;
 
 class Cheese {
@@ -8,14 +13,19 @@ class Cheese {
     private double price8Inch;
     private double price12Inch;
     private boolean extra;
+    private String type;
 
-    // Create the constructor.
+    // Create the constructors.
     public Cheese(String name, boolean premium, double price4Inch, double price8Inch, double price12Inch) {
         this.name = name;
         this.premium = premium;
         this.price4Inch = price4Inch;
         this.price8Inch = price8Inch;
         this.price12Inch = price12Inch;
+    }
+
+    public Cheese(String type) {
+        this.type = type;
     }
 
     // Create getters.
@@ -25,6 +35,10 @@ class Cheese {
 
     public boolean isPremium() {
         return premium;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public double getPrice(int size) {

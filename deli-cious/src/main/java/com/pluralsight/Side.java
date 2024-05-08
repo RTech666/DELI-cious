@@ -1,3 +1,8 @@
+/* 
+side.java
+This Java file contains the base for the sides.
+*/
+
 package com.pluralsight;
 
 class Side {
