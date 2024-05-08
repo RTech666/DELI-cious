@@ -7,6 +7,7 @@ class Meat {
     private double price4Inch;
     private double price8Inch;
     private double price12Inch;
+    private boolean extra;
 
     // Create the constructor.
     public Meat(String name, boolean premium, double price4Inch, double price8Inch, double price12Inch) {
@@ -37,5 +38,9 @@ class Meat {
             default:
                 throw new IllegalArgumentException("Invalid size: " + size);
         }
+    }
+
+    public boolean isExtra() {
+        return extra;
     }
 }

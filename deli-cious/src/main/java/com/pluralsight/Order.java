@@ -1,6 +1,5 @@
 package com.pluralsight;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 class Order {
@@ -9,14 +8,12 @@ class Order {
     private List<Drink> drinks;
     private List<Chips> chips;
     private List<Side> sides;
-    private Date orderTime;
 
     // Create the constructor.
     public Order() {
         this.sandwiches = new ArrayList<>();
         this.drinks = new ArrayList<>();
         this.chips = new ArrayList<>();
-        this.orderTime = new Date();
         this.sides = new ArrayList<>();
     }
 
@@ -35,5 +32,29 @@ class Order {
 
     public void addSide(Side side) {
         sides.add(side);
+    }
+
+    public List<Sandwich> getSandwiches() {
+        return sandwiches;
+    }
+
+    public List<Drink> getDrinks() {
+        return drinks;
+    }
+
+    public List<Chips> getChips() {
+        return chips;
+    }
+
+    public List<Side> getSides() {
+        return sides;
+    }
+
+    // Create clearOrder method.
+    public void clearOrder() {
+        sandwiches.clear();
+        drinks.clear();
+        chips.clear();
+        sides.clear();
     }
 }
