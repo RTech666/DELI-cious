@@ -829,6 +829,9 @@ public class Main {
 
     // Create checkout method.
     public static void checkout() {
+        // Print title.
+        System.out.println("---- Your Order ----");
+
         double totalOrderPrice = 0.0;
 
         // Calculate total price for each sandwich.
