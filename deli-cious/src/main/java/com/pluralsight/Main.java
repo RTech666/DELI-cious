@@ -911,10 +911,13 @@ public class Main {
                 writer.close();
 
                 // Print success messsage.
-                System.out.println("Order confirmed. Order details saved in " + filename);
+                System.out.println("\nOrder confirmed. Order details saved in " + filename);
+
+                // Clear the order after it's confirmed.
+                order.clearOrder();
             // If an error occurs, print error.
             } catch (IOException e) {
-                System.out.println("Error occurred while saving order.");
+                System.out.println("\nError occurred while saving order.");
                 e.printStackTrace();
             }
         } else if (choice == 2) {
@@ -922,10 +925,10 @@ public class Main {
             order.clearOrder();
 
             // Print success message.
-            System.out.println("Order canceled.");
+            System.out.println("\nOrder canceled.");
         // If user enters invalid input, print error.
         } else {
-            System.out.println("Invalid choice.");
+            System.out.println("\nInvalid choice.");
         }
     }
 }
